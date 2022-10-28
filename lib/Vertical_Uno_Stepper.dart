@@ -11,9 +11,10 @@ class VerticalUnoStepper extends StatefulWidget {
   final int min;
   final int max;
   final double inputBoxWidth;
+  final double buttonBorderRadius;
   final int step;
   final bool disableInput;
-  final BoxDecoration? ButtonBoxDecoration;
+
   final ValueChanged<int>? onChange;
   final Color?
       inputTextColor,
@@ -24,6 +25,7 @@ class VerticalUnoStepper extends StatefulWidget {
     Key? key,
     this.defaultValue = 0,
     this.min = 0,
+    this.buttonBorderRadius = 0,
     required this.max,
     this.step = 1,
     this.inputBoxWidth = 50,
@@ -32,7 +34,7 @@ class VerticalUnoStepper extends StatefulWidget {
 
     this.inputTextColor,
     this.ButtonColor,
-    this.IconColor, this.ButtonBoxDecoration,
+    this.IconColor,
   })  : assert(max >= min),
         assert(step >= 1),
         super(key: key);
@@ -70,11 +72,11 @@ class VerticalUnoStepperState extends State<VerticalUnoStepper> {
         onTap: enableMin ? onRemove : null,
         child: Container(
 
-          decoration: widget.ButtonBoxDecoration==null ?
+          decoration:
 
           BoxDecoration(
-            color:   Colors.blue,
-            borderRadius: BorderRadius.circular(3),
+            color:widget.ButtonColor==null?   Colors.blue : widget.ButtonColor,
+            borderRadius: BorderRadius.circular(widget.buttonBorderRadius),
             boxShadow: [
               BoxShadow(
                 color: Colors.grey,
@@ -82,10 +84,10 @@ class VerticalUnoStepperState extends State<VerticalUnoStepper> {
                   1.0,
                   3.0,
                 ),
-                blurRadius:10.0,
+                blurRadius:5.0,
               ),         ],
 
-          ):widget.ButtonBoxDecoration,
+          ) ,
           height: _KDefaultButtonSize,
           width: _KDefaultButtonSize,
 
@@ -133,24 +135,23 @@ class VerticalUnoStepperState extends State<VerticalUnoStepper> {
     children.add(const SizedBox(height: _KDefaultSpace));
     children.add(Center(
       child: InkWell(
-        onTap: enableMin ? onAdd : null,
+        onTap: enableMax ? onAdd : null,
         child: Container(
-          decoration: widget.ButtonBoxDecoration==null ?
 
-          BoxDecoration(
-            color:   Colors.blue,
-            borderRadius: BorderRadius.circular(3),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey,
-                offset: const Offset(
-                  1.0,
-                  3.0,
-                ),
-                blurRadius:10.0,
-              ),         ],
+         decoration:  BoxDecoration(
+           color:widget.ButtonColor==null?   Colors.blue : widget.ButtonColor,
+           borderRadius: BorderRadius.circular(widget.buttonBorderRadius),
+           boxShadow: [
+             BoxShadow(
+               color: Colors.grey,
+               offset: const Offset(
+                 1.0,
+                 3.0,
+               ),
+               blurRadius:5.0,
+             ),         ],
 
-          ):widget.ButtonBoxDecoration,
+         ),
           height: _KDefaultButtonSize,
           width: _KDefaultButtonSize,
 

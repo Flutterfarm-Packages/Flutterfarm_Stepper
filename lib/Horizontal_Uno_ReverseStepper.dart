@@ -12,8 +12,8 @@ class HorizontalUnoReverseStepper extends StatefulWidget {
   final int max;
   final int step;
   final double inputBoxWidth;
+  final double buttonBorderRadius;
   final bool disableInput;
-  final BoxDecoration? ButtonBoxDecoration;
   final ValueChanged<int>? onChange;
   final Color?
       inputTextColor,
@@ -24,6 +24,7 @@ class HorizontalUnoReverseStepper extends StatefulWidget {
     Key? key,
     this.defaultValue = 0,
     this.min = 0,
+    this.buttonBorderRadius = 0,
     this.inputBoxWidth = 50,
     required this.max,
     this.step = 1,
@@ -31,7 +32,7 @@ class HorizontalUnoReverseStepper extends StatefulWidget {
     this.onChange,
     this.inputTextColor,
     this.ButtonColor,
-    this.IconColor, this.ButtonBoxDecoration,
+    this.IconColor,
   })  : assert(max >= min),
         assert(step >= 1),
         super(key: key);
@@ -65,13 +66,11 @@ class HorizontalUnoReverseStepperState extends State<HorizontalUnoReverseStepper
     ];
     children.add(Center(
       child: InkWell(
-        onTap: enableMin ? onAdd : null,
+        onTap: enableMax ? onAdd : null,
         child: Container(
-          decoration: widget.ButtonBoxDecoration==null ?
-
-          BoxDecoration(
-            color:   Colors.blue,
-            borderRadius: BorderRadius.circular(3),
+          decoration:   BoxDecoration(
+            color:widget.ButtonColor==null?   Colors.blue : widget.ButtonColor,
+            borderRadius: BorderRadius.circular(widget.buttonBorderRadius),
             boxShadow: [
               BoxShadow(
                 color: Colors.grey,
@@ -79,10 +78,10 @@ class HorizontalUnoReverseStepperState extends State<HorizontalUnoReverseStepper
                   1.0,
                   3.0,
                 ),
-                blurRadius:10.0,
+                blurRadius:5.0,
               ),         ],
 
-          ):widget.ButtonBoxDecoration,
+          ) ,
           height: _KDefaultButtonSize,
           width: _KDefaultButtonSize,
 
@@ -134,11 +133,9 @@ class HorizontalUnoReverseStepperState extends State<HorizontalUnoReverseStepper
         onTap: enableMin ? onRemove : null,
         child: Container(
 
-          decoration: widget.ButtonBoxDecoration==null ?
-
-          BoxDecoration(
-            color:   Colors.blue,
-            borderRadius: BorderRadius.circular(3),
+          decoration:   BoxDecoration(
+            color:widget.ButtonColor==null?   Colors.blue : widget.ButtonColor,
+            borderRadius: BorderRadius.circular(widget.buttonBorderRadius),
             boxShadow: [
               BoxShadow(
                 color: Colors.grey,
@@ -146,10 +143,10 @@ class HorizontalUnoReverseStepperState extends State<HorizontalUnoReverseStepper
                   1.0,
                   3.0,
                 ),
-                blurRadius:10.0,
+                blurRadius:5.0,
               ),         ],
 
-          ):widget.ButtonBoxDecoration,
+          ) ,
           height: _KDefaultButtonSize,
           width: _KDefaultButtonSize,
 

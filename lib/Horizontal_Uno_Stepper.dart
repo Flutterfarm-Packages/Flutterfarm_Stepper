@@ -12,8 +12,8 @@ class HorizontalUnoStepper extends StatefulWidget {
   final int max;
   final int step;
   final double inputBoxWidth;
+  final double buttonBorderRadius;
   final bool disableInput;
-  final BoxDecoration? ButtonBoxDecoration;
   final ValueChanged<int>? onChange;
   final Color?
       inputTextColor,
@@ -25,6 +25,7 @@ class HorizontalUnoStepper extends StatefulWidget {
     this.defaultValue = 0,
     this.min = 0,
     this.inputBoxWidth = 50,
+    this.buttonBorderRadius = 0,
     required this.max,
     this.step = 1,
     this.disableInput = false,
@@ -32,7 +33,7 @@ class HorizontalUnoStepper extends StatefulWidget {
 
     this.inputTextColor,
     this.ButtonColor,
-    this.IconColor, this.ButtonBoxDecoration,
+    this.IconColor,
   })  : assert(max >= min),
         assert(step >= 1),
         super(key: key);
@@ -70,11 +71,9 @@ class HorizontalUnoStepperState extends State<HorizontalUnoStepper> {
         onTap: enableMin ? onRemove : null,
         child: Container(
 
-          decoration: widget.ButtonBoxDecoration==null ?
-
-          BoxDecoration(
-            color:   Colors.blue,
-            borderRadius: BorderRadius.circular(3),
+          decoration:  BoxDecoration(
+            color:widget.ButtonColor==null?   Colors.blue : widget.ButtonColor,
+            borderRadius: BorderRadius.circular(widget.buttonBorderRadius),
             boxShadow: [
               BoxShadow(
                 color: Colors.grey,
@@ -82,10 +81,10 @@ class HorizontalUnoStepperState extends State<HorizontalUnoStepper> {
                   1.0,
                   3.0,
                 ),
-                blurRadius:10.0,
+                blurRadius:5.0,
               ),         ],
 
-          ):widget.ButtonBoxDecoration,
+          ) ,
           height: _KDefaultButtonSize,
           width: _KDefaultButtonSize,
 
@@ -133,13 +132,11 @@ class HorizontalUnoStepperState extends State<HorizontalUnoStepper> {
     children.add(const SizedBox(width: _KDefaultSpace));
     children.add(Center(
       child: InkWell(
-        onTap: enableMin ? onAdd : null,
+        onTap: enableMax ? onAdd : null,
         child: Container(
-          decoration: widget.ButtonBoxDecoration==null ?
-
-          BoxDecoration(
-            color:   Colors.blue,
-            borderRadius: BorderRadius.circular(3),
+          decoration:   BoxDecoration(
+            color:widget.ButtonColor==null?   Colors.blue : widget.ButtonColor,
+            borderRadius: BorderRadius.circular(widget.buttonBorderRadius),
             boxShadow: [
               BoxShadow(
                 color: Colors.grey,
@@ -147,10 +144,10 @@ class HorizontalUnoStepperState extends State<HorizontalUnoStepper> {
                   1.0,
                   3.0,
                 ),
-                blurRadius:10.0,
+                blurRadius:5.0,
               ),         ],
 
-          ):widget.ButtonBoxDecoration,
+          ) ,
           height: _KDefaultButtonSize,
           width: _KDefaultButtonSize,
 
