@@ -1,4 +1,5 @@
 library uno_stepper;
+
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -7,6 +8,7 @@ import 'package:flutter/services.dart';
 const double _KDefaultButtonSize = 30;
 const double _KDefaultSpace = 10;
 const double _KDefaultTextFontSize = 15;
+
 class VerticalUnoStepper extends StatefulWidget {
   final num defaultValue;
   final int min;
@@ -17,10 +19,7 @@ class VerticalUnoStepper extends StatefulWidget {
   final bool disableInput;
 
   final ValueChanged<int>? onChange;
-  final Color?
-      inputTextColor,
-      ButtonColor,
-      IconColor;
+  final Color? inputTextColor, ButtonColor, IconColor;
 
   const VerticalUnoStepper({
     Key? key,
@@ -32,7 +31,6 @@ class VerticalUnoStepper extends StatefulWidget {
     this.inputBoxWidth = 50,
     this.disableInput = false,
     this.onChange,
-
     this.inputTextColor,
     this.ButtonColor,
     this.IconColor,
@@ -64,19 +62,15 @@ class VerticalUnoStepperState extends State<VerticalUnoStepper> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> children = [
-
-    ];
+    final List<Widget> children = [];
 
     children.add(Center(
       child: InkWell(
         onTap: enableMin ? onRemove : null,
         child: Container(
-
-          decoration:
-
-          BoxDecoration(
-            color:widget.ButtonColor==null?   Colors.blue : widget.ButtonColor,
+          decoration: BoxDecoration(
+            color:
+                widget.ButtonColor == null ? Colors.blue : widget.ButtonColor,
             borderRadius: BorderRadius.circular(widget.buttonBorderRadius),
             boxShadow: [
               BoxShadow(
@@ -85,18 +79,15 @@ class VerticalUnoStepperState extends State<VerticalUnoStepper> {
                   1.0,
                   3.0,
                 ),
-                blurRadius:5.0,
-              ),         ],
-
-          ) ,
+                blurRadius: 5.0,
+              ),
+            ],
+          ),
           height: _KDefaultButtonSize,
           width: _KDefaultButtonSize,
-
-          child: Icon(
-              Icons.remove,
-              color: widget.IconColor == null ? Colors.white : widget.IconColor
-          ),
-
+          child: Icon(Icons.remove,
+              color:
+                  widget.IconColor == null ? Colors.white : widget.IconColor),
         ),
       ),
     ));
@@ -108,7 +99,6 @@ class VerticalUnoStepperState extends State<VerticalUnoStepper> {
         height: 35,
         width: widget.inputBoxWidth,
         decoration: BoxDecoration(
-
           borderRadius: BorderRadius.circular(3),
         ),
         child: TextField(
@@ -117,7 +107,9 @@ class VerticalUnoStepperState extends State<VerticalUnoStepper> {
           textAlignVertical: TextAlignVertical.center,
           enabled: !widget.disableInput,
           style: TextStyle(
-              fontSize: _KDefaultTextFontSize, color: widget.inputTextColor,fontWeight:FontWeight.w700),
+              fontSize: _KDefaultTextFontSize,
+              color: widget.inputTextColor,
+              fontWeight: FontWeight.w700),
           keyboardType: TextInputType.number,
           inputFormatters: [
             FilteringTextInputFormatter.allow(RegExp("[-0-9]")),
@@ -125,8 +117,7 @@ class VerticalUnoStepperState extends State<VerticalUnoStepper> {
           ],
           decoration: InputDecoration(
             border: InputBorder.none,
-            contentPadding: EdgeInsets.symmetric(
-                vertical: 13.8 , horizontal: 0),
+            contentPadding: EdgeInsets.symmetric(vertical: 13.8, horizontal: 0),
           ),
           onEditingComplete: inputComplete,
         ),
@@ -138,32 +129,28 @@ class VerticalUnoStepperState extends State<VerticalUnoStepper> {
       child: InkWell(
         onTap: enableMax ? onAdd : null,
         child: Container(
-
-         decoration:  BoxDecoration(
-           color:widget.ButtonColor==null?   Colors.blue : widget.ButtonColor,
-           borderRadius: BorderRadius.circular(widget.buttonBorderRadius),
-           boxShadow: [
-             BoxShadow(
-               color: Colors.grey,
-               offset: const Offset(
-                 1.0,
-                 3.0,
-               ),
-               blurRadius:5.0,
-             ),         ],
-
-         ),
+          decoration: BoxDecoration(
+            color:
+                widget.ButtonColor == null ? Colors.blue : widget.ButtonColor,
+            borderRadius: BorderRadius.circular(widget.buttonBorderRadius),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey,
+                offset: const Offset(
+                  1.0,
+                  3.0,
+                ),
+                blurRadius: 5.0,
+              ),
+            ],
+          ),
           height: _KDefaultButtonSize,
           width: _KDefaultButtonSize,
-
-          child: Icon(
-              Icons.add,
-              color: widget.IconColor == null ? Colors.white : widget.IconColor
-          ),
-
+          child: Icon(Icons.add,
+              color:
+                  widget.IconColor == null ? Colors.white : widget.IconColor),
         ),
       ),
-
     ));
 
     return Column(
@@ -251,4 +238,3 @@ class VerticalUnoStepperState extends State<VerticalUnoStepper> {
     super.dispose();
   }
 }
-

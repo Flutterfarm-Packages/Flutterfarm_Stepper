@@ -1,4 +1,5 @@
 library uno_stepper;
+
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -7,6 +8,7 @@ import 'package:flutter/services.dart';
 const double _KDefaultButtonSize = 30;
 const double _KDefaultSpace = 10;
 const double _KDefaultTextFontSize = 15;
+
 class VerticalUnoReverseStepper extends StatefulWidget {
   final num defaultValue;
   final int min;
@@ -16,10 +18,7 @@ class VerticalUnoReverseStepper extends StatefulWidget {
   final double buttonBorderRadius;
   final bool disableInput;
   final ValueChanged<int>? onChange;
-  final Color?
-      inputTextColor,
-      ButtonColor,
-      IconColor;
+  final Color? inputTextColor, ButtonColor, IconColor;
 
   const VerticalUnoReverseStepper({
     Key? key,
@@ -31,7 +30,6 @@ class VerticalUnoReverseStepper extends StatefulWidget {
     this.step = 1,
     this.disableInput = false,
     this.onChange,
-
     this.inputTextColor,
     this.ButtonColor,
     this.IconColor,
@@ -40,7 +38,8 @@ class VerticalUnoReverseStepper extends StatefulWidget {
         super(key: key);
 
   @override
-  VerticalUnoReverseStepperState createState() => VerticalUnoReverseStepperState();
+  VerticalUnoReverseStepperState createState() =>
+      VerticalUnoReverseStepperState();
 }
 
 class VerticalUnoReverseStepperState extends State<VerticalUnoReverseStepper> {
@@ -63,15 +62,14 @@ class VerticalUnoReverseStepperState extends State<VerticalUnoReverseStepper> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> children = [
-
-    ];
+    final List<Widget> children = [];
     children.add(Center(
       child: InkWell(
         onTap: enableMax ? onAdd : null,
         child: Container(
-          decoration:   BoxDecoration(
-            color:widget.ButtonColor==null?   Colors.blue : widget.ButtonColor,
+          decoration: BoxDecoration(
+            color:
+                widget.ButtonColor == null ? Colors.blue : widget.ButtonColor,
             borderRadius: BorderRadius.circular(widget.buttonBorderRadius),
             boxShadow: [
               BoxShadow(
@@ -80,21 +78,17 @@ class VerticalUnoReverseStepperState extends State<VerticalUnoReverseStepper> {
                   1.0,
                   3.0,
                 ),
-                blurRadius:5.0,
-              ),         ],
-
-          ) ,
+                blurRadius: 5.0,
+              ),
+            ],
+          ),
           height: _KDefaultButtonSize,
           width: _KDefaultButtonSize,
-
-          child: Icon(
-              Icons.add,
-              color: widget.IconColor == null ? Colors.white : widget.IconColor
-          ),
-
+          child: Icon(Icons.add,
+              color:
+                  widget.IconColor == null ? Colors.white : widget.IconColor),
         ),
       ),
-
     ));
 
     children.add(const SizedBox(height: _KDefaultSpace));
@@ -104,7 +98,6 @@ class VerticalUnoReverseStepperState extends State<VerticalUnoReverseStepper> {
         height: 35,
         width: widget.inputBoxWidth,
         decoration: BoxDecoration(
-
           borderRadius: BorderRadius.circular(3),
         ),
         child: TextField(
@@ -113,7 +106,9 @@ class VerticalUnoReverseStepperState extends State<VerticalUnoReverseStepper> {
           textAlignVertical: TextAlignVertical.center,
           enabled: !widget.disableInput,
           style: TextStyle(
-              fontSize: _KDefaultTextFontSize, color: widget.inputTextColor,fontWeight:FontWeight.w700),
+              fontSize: _KDefaultTextFontSize,
+              color: widget.inputTextColor,
+              fontWeight: FontWeight.w700),
           keyboardType: TextInputType.number,
           inputFormatters: [
             FilteringTextInputFormatter.allow(RegExp("[-0-9]")),
@@ -121,8 +116,7 @@ class VerticalUnoReverseStepperState extends State<VerticalUnoReverseStepper> {
           ],
           decoration: InputDecoration(
             border: InputBorder.none,
-            contentPadding: EdgeInsets.symmetric(
-                vertical: 13.8 , horizontal: 0),
+            contentPadding: EdgeInsets.symmetric(vertical: 13.8, horizontal: 0),
           ),
           onEditingComplete: inputComplete,
         ),
@@ -135,9 +129,9 @@ class VerticalUnoReverseStepperState extends State<VerticalUnoReverseStepper> {
       child: InkWell(
         onTap: enableMin ? onRemove : null,
         child: Container(
-
-          decoration:   BoxDecoration(
-            color:widget.ButtonColor==null?   Colors.blue : widget.ButtonColor,
+          decoration: BoxDecoration(
+            color:
+                widget.ButtonColor == null ? Colors.blue : widget.ButtonColor,
             borderRadius: BorderRadius.circular(widget.buttonBorderRadius),
             boxShadow: [
               BoxShadow(
@@ -146,18 +140,15 @@ class VerticalUnoReverseStepperState extends State<VerticalUnoReverseStepper> {
                   1.0,
                   3.0,
                 ),
-                blurRadius:5.0,
-              ),         ],
-
-          ) ,
+                blurRadius: 5.0,
+              ),
+            ],
+          ),
           height: _KDefaultButtonSize,
           width: _KDefaultButtonSize,
-
-          child: Icon(
-              Icons.remove,
-              color: widget.IconColor == null ? Colors.white : widget.IconColor
-          ),
-
+          child: Icon(Icons.remove,
+              color:
+                  widget.IconColor == null ? Colors.white : widget.IconColor),
         ),
       ),
     ));
@@ -247,4 +238,3 @@ class VerticalUnoReverseStepperState extends State<VerticalUnoReverseStepper> {
     super.dispose();
   }
 }
-
